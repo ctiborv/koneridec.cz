@@ -1,0 +1,37 @@
+Návštìvní kniha - guestbook
+
+AUTOR
+
+ - http://www.php.jonweb.cz
+
+FUNKCE
+
+ - pøíspìvek: zpráva (se smajlíky), jméno, e-mail, ICQ, WWW stránky, jednoduché formátování textu
+ - automatickı pøevod url na odkazy vèetnì zkracování dlouhıch odkazù
+ - pøevod emailù na html entity pro lepší ochranu proti spamu
+ - vlastní nastavení vzhledu pomocí CSS stylu - máte-li zájem o vytvoøení vzhledu, kontaktujte mì (kontakt naleznete na http://www.php.jonweb.cz)
+ - nastavení názvu knihy, poètu pøíspìvkù na stránku, poètu starıch pøíspìvkù v databázi
+ - vypnutí/zapnutí ochrany proti spamu
+ - mazání pøíspìvkù
+ - zabanování IP adres
+ - vypnutí/zapnutí chránìnıch jmén
+ - vıbìr z nìkolika sad smajlíkù
+ - jednoduché odinstalování
+
+INSTALACE
+
+ - vytvoøte si sloku gbook/ v koøenovém adresáøi vašeho webu a do ní rozbalte soubory obsaené ve staeném archivu gbook.zip
+ - editujte soubor konfigurace.php a nastavte v nìm pøihlašovací údaje k vaší databázi a do administrace návštìvní knihy
+ - spuste v prohlíeèi soubor instalace.php (standatnì www.vasweb.cz/gbook/instalace.php)
+ - nyní je ji návštìvní kniha pøipravena k pouití (standartnì www.vasweb.cz/gbook), administrace je k dispozici na adrese www.vasweb.cz/gbook/admin.php
+ - vlastní vzhled návštìvní knihy lze vytvoøit editací souboru styl.css
+
+PODMÍNKY
+
+ - autor PHP skriptu neruèí za škody vzniklé jeho uíváním
+ - autor dále neruèí za obsah zobrazovanı prostøednictvím tohoto PHP skriptu
+ - je zakázáno tento PHP skript vydávat za vlastní a to i po jeho úpravì
+ - veškeré zpìtné odkazy musí zùstat ve skriptu zachovány
+ - tento PHP skript je volnì šíøitelnı
+ 
+Veškeré informace ohlednì instalace a nastavení naleznete na adrese http://www.php.jonweb.cz

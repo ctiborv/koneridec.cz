@@ -1,0 +1,82 @@
+.bxslider {
+	position: relative;
+	height: 610px;
+	display: block;
+	width: 100%;
+	z-index: 20;
+}
+.bxslider-title {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	z-index: 21;
+	top: 280px;
+	color: #412b26;
+	font: 400 45px/45px 'Wellfleet', cursive;
+	text-shadow: 0 1px 3px rgba(76,37,30,.48);
+	width:450px;
+}
+.bx-caption {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	z-index: 21;
+	top: 380px;width:400px;
+	color: #333333;
+	font: 14px/20px Arial, Helvetica, sans-serif;
+}
+.horse {
+	height:610px}
+	
+/*	width: 800px;
+	text-align: right;
+	float: right;
+}*/
+
+.bx-controls-direction {
+	z-index: 50;
+	position: absolute;
+	top: 600px;
+	margin-left: 100px;
+}
+.bx-next {
+	background: #c15d3a url(../img/slider-next.gif) center center no-repeat;
+	color: transparent;
+	width: 60px !important;
+	height: 50px !important;
+	display: block;
+	float: left;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+	-moz-border-radius: 0px 5px 5px 0px;
+	border-radius: 0px 5px 5px 0px;
+}
+.bx-prev {
+	background: #c15d3a url(../img/slider-prev.gif) center center no-repeat;
+	color: transparent;
+	width: 60px !important;
+	height: 50px !important;
+	display: block;
+	float: left;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+	-moz-border-radius: 5px 0px 0px 5px;
+	border-radius: 5px 0px 0px 5px;
+	margin-left: 1px
+}
+.bx-next:hover {
+	-moz-box-shadow: inset 0 0 5px 5px #bb5736;
+	-webkit-box-shadow: inset 0 0 5px 5px #bb5736;
+	box-shadow: inset 0 0 5px 5px #bb5736;
+}
+.bx-prev:hover {
+	-moz-box-shadow: inset 0 0 5px 5px #bb5736;
+	-webkit-box-shadow: inset 0 0 5px 5px #bb5736;
+	box-shadow: inset 0 0 5px 5px #bb5736;
+}
+.bx-pager {
+	display: none;
+	visibility: hidden
+}

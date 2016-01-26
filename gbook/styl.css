@@ -1,0 +1,144 @@
+/* Hlavni */
+
+body, html {
+	font-family: arial, tahoma, verdana, sans-serif;
+	font-size: small;
+	color: #000000;
+	background-color: #F3EFB4;
+	padding: 0px;
+	margin: 0px;
+}
+
+#main {
+	width: 500px;
+	margin: 0px auto;
+}
+
+img {
+	border-width: 0px;
+}
+
+/* Text */
+
+h1 {
+	font-size: x-large;
+	text-align: center;
+	margin: 10px 0px 10px 0px;
+	padding: 0px;
+}
+
+h1 a {
+	text-decoration: none;
+}
+
+h2 {
+	font-size: small;
+	font-weight: bold;
+	margin: 0px 0px 5px 10px;
+	padding: 0px;
+}
+
+a {
+	color: #000000;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #000000;
+	text-decoration: none;
+}
+
+#zobraz {
+	text-align: center;
+	font-style: italic;
+}
+
+#odkaz {
+	text-align: center;
+}
+
+#info {
+	font-size: x-small;
+	margin-left: 15px;
+}
+
+/* Formular */
+
+form {
+	margin: 0px;
+	padding: 0px;
+}
+
+fieldset {
+	border: solid 1px #666666;
+	padding: 5px;
+	margin: 0px;
+}
+
+legend {
+	font-size: medium;
+	font-weight: bold;
+	color: #000000;
+	padding: 0px 5px;
+	margin : 0px;
+}
+
+legend a {
+	color: #000000;
+	text-decoration: none;
+}
+
+input, textarea, select {
+	width: 200px;
+	height: 20px;
+	border: solid 1px black;
+	background-color: #dddddd;
+	color: black;
+	margin: 0px 0px 10px 15px;
+	padding: 0px;
+	font-family: arial, tahoma, verdana, sans-serif;
+	font-size: small;
+}
+
+textarea {
+	width: 455px;
+	height: 80px;
+}
+
+.tlacitko {
+	width: 100px;
+	margin-top: 10px;
+}
+
+#smajlici {
+	margin: 0px 15px 10px 15px;
+}
+
+/* Zpravy */
+
+p {
+	display: block;
+	padding: 5px;
+	margin: 0px;
+	background-color: #eeeeee;
+	text-align: justify;
+	border-top: solid 1px #666666;
+	border-bottom: solid 1px #666666;
+	line-height: 1.3em;
+}
+
+.stranky {
+	font-style: italic;
+	color: black;
+	margin: 15px 0px;
+}
+
+.zprava {
+	margin: 10px 0px 20px 0px;
+	border: solid 1px #666666;
+}
+
+.hlavicka, .paticka {
+	padding: 3px 0px 3px 5px;
+	background-color: #dddddd;
+}

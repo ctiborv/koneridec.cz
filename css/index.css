@@ -1,0 +1,371 @@
+@charset "utf-8";
+/* CSS Document */
+.galerie {width:650px;}	
+.galerka {float:left}	
+.galerka h3 {font-size:20px; text-transform:uppercase; margin-bottom:10px;padding:0; position:relative;  }
+
+
+a {
+	text-decoration: none
+}
+a img {
+	border: 0px;
+}
+html {
+	height: 100%
+}
+body {
+	background: #fffbed;
+	margin: 0;
+	padding: 0;
+	z-index: 0;
+	height: 100%
+}
+
+.strana {
+  margin: auto !important;
+	width: 1050px !important;
+	background: none;
+}
+#vrch {
+	background: url(../img/bg-menu.png) repeat-x !important;
+	z-index: 20;
+	height: 100px;
+	width: 100%;
+  
+  
+}
+#menu {
+	width: 860px;
+	padding-top: 0px;
+	background: url(../img/menu_bg.jpg) no-repeat;
+	height: 100px;
+  font-family: 'Podkova';
+	text-transform: uppercase;
+  margin-left: 300px;
+  
+}
+
+#logo {
+	width: 382px;
+	float: left;
+	position: absolute;
+	z-index: 40;
+}
+
+#facebook {
+  position: absolute;
+  display: block;
+  left: 1140px;
+  top: 20px;
+}
+#facebook img {
+  display: block;
+  height: 44px;
+  
+	z-index: 40;
+}
+
+#logo img {
+	padding: 0px 0 0 20px;
+}
+#web-slider {
+
+	height: 560px;
+}
+.bgslider {
+	background: url(../img/obsahsl.png) repeat-x scroll;
+  
+}
+#web-newbox {
+	background: rgb(96,32,0);
+	height: 3px;
+	clear: both
+}
+#strobsah {
+	clear: both;
+	padding-bottom: 40px;
+}
+#strspodni {
+	background: url(../img/bg-bottom.png) repeat-x;
+	clear: both;
+	height: 284px;
+}
+#strdole {
+	height: 50px;
+	background: url(../img/bg-footer.png) repeat-x;
+	margin-top: -50px !important;
+}
+#obsahhl a {
+	color: #b95535;
+}
+#obsahhl {
+	padding: 20px 0 100px 0px;
+	font-family: 'Garamond', Arial, Helvetica, sans-serif;
+	color: #135955;
+	font-size: 14px
+}
+#obsahhl h1 {
+  color: rgb(128,0,0);
+	font: lighter 32px 'Garamond';
+	text-shadow: 0 1px 3px rgba(74,34,32,.21);
+	
+}
+#obsahhl h2 {
+	font-family: 'Garamond', sans-serif;
+	text-transform: uppercase;
+	font-weight: lighter;
+	font-size: 16px;
+	text-shadow: 0 1px 3px rgba(73,37,31,.45);
+  color: rgb(139,69,19);
+}
+#obsahhl h3 {
+	font-family: 'Garamond', sans-serif;
+	text-transform: uppercase;
+	margin: 5px;
+	padding: 0;
+	text-shadow: 0 1px 3px rgba(74,34,32,.21);
+}
+#obsahhl h4 {
+	font-family: 'Garamond', sans-serif;
+	text-shadow: 0 1px 3px rgba(74,34,32,.21);
+}
+#obsahhl h5 {
+	font-family: 'Garamond', sans-serif;
+	text-shadow: 0 1px 3px rgba(74,34,32,.21);
+}
+#obsahhl p {
+	text-shadow: 0 1px 3px rgba(74,34,32,.21);
+}
+#obsahhl img {
+	border: 0px solid #FFF;
+	margin: 5px;
+	-webkit-box-shadow: 0px 3px 13px 0px rgba(89,88,89,0.43);
+	-moz-box-shadow: 0px 3px 13px 0px rgba(89,88,89,0.43);
+	box-shadow: 0px 3px 13px 0px rgba(89,88,89,0.43);
+}
+#obsahhl ul {
+	margin: 4px 2px 4px 25px;
+	padding: 0
+}
+#obsahhl li {
+	background: url(../img/li-podkova.png) no-repeat;
+	padding: 8px 0 8px 0px
+}
+#prvnistrana-gallery-text {
+	float: left;
+	width: 33%
+}
+#prvnistrana-gallery-text p {
+	font-family: Garamond, Arial, Helvetica, sans-serif;
+	color: #735955;
+	font-size: 14px
+}
+.prvnistrana-gallery-text-title {
+	font-family: 'Garamond', sans-serif;
+	padding: 15PX;
+	text-transform: uppercase;
+	font-weight: lighter;
+	font-size: 16px;
+	text-shadow: 0 1px 3px rgba(76,37,30,.48);
+	color: #b95535;
+}
+#prvnistrana-gallery {
+	width: 64%;
+	float: right;
+	padding: 20px 10px
+}
+#prvnistrana-gallery img {
+	height: 90px;
+	border: 7px solid #FFF;
+	margin: 0 10px 0 0;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+}
+.horsedatil {
+	width: 300px
+}
+.horsedatil td {
+	padding: 3px;
+	color: #900;
+}
+.clanekhl {
+	clear: both;
+	padding: 0px;
+	margin-bottom: 20px;
+	height: 195px;
+	width: 600px;
+	background: url(../img/service-bg.png) no-repeat bottom right;
+}
+.clanekhl div {
+	background: none
+}
+.clanekhl div.obr {
+	width: 200px;
+	float: left;
+	margin: 2px;
+	padding: 0px;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+.clanekhl div.obr img {
+	border: 1px solid #dedede;
+	padding: 5px;
+	width: 170px;
+}
+.clanekhl div.text {
+	font-weight: normal;
+	width: 380px;
+	float: right;
+	margin: 2px;
+	padding: 2px;
+}
+.clanekhl div.nadpis {
+	font-weight: normal;
+	margin: 0px;
+	padding: 0px;
+}
+.clanekhl div.text p {
+	color: #666666;
+	font-size: 12px;
+	margin: 2px 0 0;
+	padding: 0 0 10px 0;
+}
+.clanekhl div.text p.foto {
+	height: 70px
+}
+.clanekhl div.text img {
+	height: 60px;
+	padding: 4px;
+	border: 1px solid #DDD;
+	margin: 4px;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+}
+body.no-prvnistrana {
+	background: #F3EFB4 url(../img/obsah-sl.png) repeat-y !important;
+  opacity: 1;
+  z-index 21;
+
+}
+.clanekhl div.text h2 {
+	font-size: 16px;
+	background: none;
+	margin: 2px;
+	padding: 0px 5px 5px 0px;
+	text-decoration: none;
+	/*	color:#9bc04a;*/
+	margin: 0px;
+	font-variant: small-caps;
+}
+.clr {
+	clear: both
+}
+a.moresmall {
+	width: 70px !important;
+	background: url(../img/btn-bg.gif);
+	display: block;
+	margin-left: 20px;
+	color: #fff !important;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 11px;
+	text-decoration: none;
+	padding: 10px;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+	-moz-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	float: left
+}
+a.more {
+	background: url(../img/btn-bg2.gif);
+	display: block;
+	width: 120px;
+	margin-left: 20px;
+	color: #fff !important;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 11px;
+	text-decoration: none;
+	padding: 10px;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+	-moz-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+}
+.gallery-web a img {
+	border: 7px solid #FFF !important;
+	margin: 10px 10px 0 0!important;
+	-moz-box-shadow: 0 0 5px #888;
+	-webkit-box-shadow: 0 0 5px#888;
+	box-shadow: 0 0 5px #888;
+}
+.clanek {
+	clear: both;
+	margin: 10px;
+	background: url(../img/service-bg.png) no-repeat bottom right;
+}
+.clanek div.leva {
+	width: 150px;
+	float: left
+}
+.clanek div.prava {
+	width: 450px;
+	float: right
+}
+.clanek div.prava h2, .clanek div.prava h2 a {
+	color: #a70b0a;
+	font-size: 18px !important;
+	font-weight: lighter !important;
+	letter-spacing: 0px !important;
+	margin: 0px 0px 2px;
+	text-transform: none;
+}
+.clanek div.prava p {
+	margin: 0px;
+	padding: 2px
+}
+.clanek div.prava p.txt {
+	height: 80px
+}
+
+#pole {
+	min-height: 100%;
+	width: 100%
+}
+
+
+.logofoot {
+	padding: 5px;
+	width: 250px;
+	float: left
+}
+.footpage {
+	padding: 5px;
+	width: 750px;
+	float: left;
+	font-family: Lato, Arial, Helvetica, sans-serif;
+	color: #666;
+	font-size: 12px
+}
+#text_content {
+	width: 400px;
+	border: 1px solid #999;
+	padding: 5px
+}
+#mesage {
+	width: 400px;
+	height: 120px;
+	border: 1px solid #999;
+	padding: 5px
+}
+body.prvnistrana {
+	background: #F3EFB4 url(../img/drevo.jpg) repeat-x !important;
+	z-index: 0;
+}
+ 

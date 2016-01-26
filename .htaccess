@@ -1,0 +1,55 @@
+# htaccess rules for subdomains and aliases
+# to create new subdomain, create a folder www/subdom/(subdomain name)
+# to create web for alias, create a folder www/domains/(whole domain name)
+
+# htaccess pravidla pro subdomeny a samostatne weby aliasu
+# pro vytvoreni subdomeny vytvorte adresar www/subdom/(nazev subdomeny)
+# pro vytvoreni webu pro alias vytvorte adresar www/domains/(cely domenovy nazev)
+# dalsi info a priklady: http://kb.wedos.com/r/32/webhosting-htaccess.html
+
+RewriteEngine On
+
+# cele domeny (aliasy)
+RewriteCond %{REQUEST_URI} !^domains/
+RewriteCond %{REQUEST_URI} !^/domains/
+RewriteCond %{HTTP_HOST} ^(www\.)?(.*)$
+RewriteCond %{DOCUMENT_ROOT}/domains/%2 -d
+RewriteRule (.*) domains/%2/$1 [DPI]
+
+# subdomeny (s nebo bez www na zacatku)
+RewriteCond %{REQUEST_URI} !^subdom/
+RewriteCond %{REQUEST_URI} !^/subdom/
+RewriteCond %{HTTP_HOST} ^(www\.)?(.*)\.([^\.]*)\.([^\.]*)$
+RewriteCond %{DOCUMENT_ROOT}/subdom/%2 -d
+RewriteRule (.*) subdom/%2/$1 [DPI]
+
+# aliasy - spravne presmerovani pri chybejicim /
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^domains/[^/]+/(.+[^/])$ /$1/ [R]
+
+# subdomeny - spravne presmerovani pri chybejicim /
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^subdom/[^/]+/(.+[^/])$ /$1/ [R]
+
+RewriteRule ^uvod.html index.php?cmd=zobrazContent&id=1
+RewriteRule ^tabory.html index.php?cmd=zobrazContent&id=2
+RewriteRule ^ubytovani.html index.php?cmd=zobrazContent&id=3
+RewriteRule ^nase-kone.html index.php?cmd=zobrazKone&id=-1
+RewriteRule ^kone-ridec-jolanka.html index.php?cmd=zobrazKone&id=1
+RewriteRule ^kone-ridec-mek.html index.php?cmd=zobrazKone&id=2
+RewriteRule ^kone-ridec-monty.html index.php?cmd=zobrazKone&id=3
+RewriteRule ^kone-ridec-nigela.html index.php?cmd=zobrazKone&id=4
+RewriteRule ^kone-ridec-orfik.html index.php?cmd=zobrazKone&id=5
+RewriteRule ^kone-ridec-ory.html index.php?cmd=zobrazKone&id=6
+RewriteRule ^kone-ridec-sona.html index.php?cmd=zobrazKone&id=7
+RewriteRule ^kone-ridec-leonka.html index.php?cmd=zobrazKone&id=8
+RewriteRule ^kone-ridec-bony.html index.php?cmd=zobrazKone&id=9
+RewriteRule ^co-nabizime.html index.php?cmd=zobrazContent&id=5
+RewriteRule ^novinky.html index.php?cmd=zobrazContent&id=6
+RewriteRule ^galerie.html index.php?cmd=zobrazGalerie
+RewriteRule ^kontakt.html index.php?cmd=zobrazKontakt
+RewriteRule ^provozni-rad.html index.php?cmd=zobrazContent&id=9
+RewriteRule ^vzkazy.html index.php?cmd=zobrazVzkazy
+RewriteRule ^letni-tabory-jarni-tabory.html index.php?cmd=zobrazKone&id=36
+RewriteRule ^letni-tabory-letni-tabory.html index.php?cmd=zobrazKone&id=37
+RewriteRule ^letni-tabory-podzim.html index.php?cmd=zobrazKone&id=38

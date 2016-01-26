@@ -1,0 +1,34 @@
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oswald Regular'), local('Oswald-Regular'), url(http://fonts.gstatic.com/s/oswald/v10/RqRF4AQrkUh3ft98NHH2mA.woff2) format('woff2'), url(http://fonts.gstatic.com/s/oswald/v10/PyqsDANUgLi2UsdO-d4iZQ.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Jockey One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Jockey One'), local('JockeyOne-Regular'), url(http://fonts.gstatic.com/s/jockeyone/v6/8Hj8G_JpSADPYrRpzMno2vk_vArhqVIZ0nv9q090hN8.woff2) format('woff2'), url(http://fonts.gstatic.com/s/jockeyone/v6/8Hj8G_JpSADPYrRpzMno2hsxEYwM7FgeyaSgU71cLG0.woff) format('woff');
+} 
+
+@font-face {
+  font-family: 'Podkova';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Podkova'), local('Podkova-Regular'), url(http://fonts.gstatic.com/s/podkova/v8/DhCs4IkPT6GgQXjwmxzSaQ.woff2) format('woff2'), url(http://fonts.gstatic.com/s/podkova/v8/E0T5zu6Y9VgTSywiWVWk7Q.woff) format('woff');
+} 
+
+@font-face {
+  font-family: 'Righteous';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Righteous'), local('Righteous-Regular'), url(http://fonts.gstatic.com/s/righteous/v5/w5P-SI7QJQSDqB3GziL8XVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2'), url(http://fonts.gstatic.com/s/righteous/v5/w5P-SI7QJQSDqB3GziL8XT8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Arvo';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Arvo'), url(http://fonts.gstatic.com/s/arvo/v8/J0GYVYTizO1mjpT3aOcSbQ.woff2) format('woff2'), url(http://fonts.gstatic.com/s/arvo/v8/WJ6D195CfbTRlIs49IbkFw.woff) format('woff');
+}
