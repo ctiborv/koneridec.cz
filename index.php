@@ -17,8 +17,8 @@ $GLOBALS["spojeni"]=$glspojeni;
 <meta charset="utf-8">
 
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Podkova">
-<link rel="stylesheet" href="css/index.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="css/menu.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="css/index.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="css/slider.css" type="text/css" media="screen, projection">
 <link href="css/css_004.css" rel="stylesheet" type="text/css">
 <link href="css/css.css" rel="stylesheet" type="text/css">
@@ -197,7 +197,9 @@ $cmd=$_GET["cmd"];
     case "zobrazContent":
        zobrazTextMenu($spojeni);
     break;
-    case "zobrazKone":
+    case "zobrazContentMenu":
+       zobrazTextContentMenu($spojeni);
+    break;    case "zobrazKone":
        zobrazKone($spojeni);
     break;
     case "zobrazKontakt":

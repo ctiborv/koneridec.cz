@@ -50,6 +50,6 @@ RewriteRule ^galerie.html index.php?cmd=zobrazGalerie
 RewriteRule ^kontakt.html index.php?cmd=zobrazKontakt
 RewriteRule ^provozni-rad.html index.php?cmd=zobrazContent&id=9
 RewriteRule ^vzkazy.html index.php?cmd=zobrazVzkazy
-RewriteRule ^letni-tabory-jarni-tabory.html index.php?cmd=zobrazKone&id=36
-RewriteRule ^letni-tabory-letni-tabory.html index.php?cmd=zobrazKone&id=37
-RewriteRule ^letni-tabory-podzim.html index.php?cmd=zobrazKone&id=38
+RewriteRule ^tabory-jarni-tabory.html index.php?cmd=zobrazContentMenu&id=36
+RewriteRule ^tabory-letni-tabory.html index.php?cmd=zobrazContentMenu&id=37
+RewriteRule ^tabory-podzim.html index.php?cmd=zobrazContentMenu&id=38

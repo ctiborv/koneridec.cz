@@ -1,0 +1,56 @@
+
+·         Prida ID produktu – na základe neho by som vedel automaticky generova URL pre obrázok produktu (nie galériu), vedel by som vyh¾ada produkty, ktoré u nie su v ponuke, atï.
+
+·         Prida ID nadradenej (materskej) kategórie (parent_id), v prípade hlavnej kategórie by potom bolo patent_id=0
+
+·         V prípade skupín (napr. http://www.nabytek-polak.cz/produkt/9202-modularne-stoly-ps1.html?L=4&fc=496) by som navrhol, pokia¾ je to moné, nasledujúcu vec:
+
+o    skupina by sa tvárila ako plnohodnotná kategória (v tomto prípade Modulárné stoly PS1)
+
+o   Poloky skupiny by potom boli ako samostatné produkty (PS1-1, PS1-1M, PS1-2, …)
+
+ 
+název, 
+katalogové èíslo, 
+krátkı / dlouhı popis, se zachováním formátování, varianty
+v pøípadì, e poloky jsou øazeny do skupin je nutno toto promítnout do XML - viz napø. http://www.nabytek-polak.cz/produkt/9202-modularne-stoly-ps1.html?L=4&fc=496
+url obrázkù pøiøazenıch ke kadému zboí, vèetnì pøípadné fotogalerie
+parametry zboí (viz produktovı list v administraci)
+nákupní ceny zboí - podle cenové kategorie partnera
+ceny pro koncové zákazníky
+název kategorie, do které je poloka zaøazena
+ID kategorie, do které je poloka zaøazena
+
+<SHOP>
+  <SHOPITEM>
+    <ITEM_ID>10406</ITEM_ID> ID produktu 
+    <PRODUCTNAME>Kovová šatní skøíò 6-box na soklu, pùlená</PRODUCTNAME> název
+    <DESCRIPTION_SHORT>rozmìr skøínì 900 x 500 x 1850mm
+cylindrické zámky se dvìma klíèi</DESCRIPTION_SHORT>  krátkı popis, se zachováním formátování
+    <DESCRIPTION_LONG></DESCRIPTION_LONG>  dlouhı popis, se zachováním formátování
+    <URL>http://www.nabytek-polak.cz/produkt/10406-kovova-satni-skrin-6-box-na-soklu--pulena.html?L=1</URL> url produktu
+    <IMGURL>http://www.nabytek-polak.cz/UserFiles/products/middle/10406.jpg</IMGURL> url obrázkù pøiøazenıch ke kadému zboí
+    <PRICE_PUR>5 270</PRICE_PUR> nákupní ceny zboí - podle cenové kategorie partnera
+    <PRICE_VAT>6 270</PRICE_VAT> ceny pro koncové zákazníky
+    <CATEGORYTEXT>Vybavení šaten / Kovové šatní skøínì / Maloobjemové kovové šatní skøíòky na soklu /</CATEGORYTEXT> Název kategorie /v pøípadì skupin vèetnì názvu nadøazeného produktu/
+    <CATEGORY_ID>5</CATEGORY_ID> ID kategorie 
+    <CATEGORY_PARENT_ID>15</CATEGORY_PARENT_ID> ID nadøazené kategorie, v pripade skupiny bude id nadrazeneho produktu
+    <PRODUCTNO>XS96-18</PRODUCTNO> katalogové èíslo
+    <PARAM>
+      <PARAM_NAME>Barva</PARAM_NAME> - název parametru
+      <VAL>èerná</VAL> - hodnota parametru
+    </PARAM>
+    <PARAM>
+      <PARAM_NAME>Šíøka</PARAM_NAME> - název parametru
+      <VAL>100 mm</VAL> - hodnota parametru
+    </PARAM>
+    <PARAM>
+	...
+    </PARAM>
+	
+
+  </SHOPITEM>
+  <SHOPITEM>
+  ...
+  </SHOPITEM>
+</SHOP>

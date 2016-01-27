@@ -122,12 +122,13 @@ function ZobrazMenu($spojeni) {
     $class="class=\"bottom\"";  
     }   
     ?>
-          <li><a href="letni-tabory-<?php echo $input?>.html" <?php  echo $class?>><?php  echo $nazevk ?></a></li>
+          <li><a href="tabory-<?php echo $input?>.html" <?php  echo $class?>><?php  echo $nazevk ?></a></li>
     <?php 
-    $rr=$rr."RewriteRule ^letni-tabory-$input.html index.php?cmd=zobrazKone&id=$id\n";
+    $rr=$rr."RewriteRule ^tabory-$input.html index.php?cmd=zobrazKone&id=$id\n";
     
     $j=$j+1;
     }
+    
     echo "</ul>";
   }
   
@@ -137,9 +138,8 @@ function ZobrazMenu($spojeni) {
   
   
 ?>
-
+      <li><div id="facebook"><a href="https://www.facebook.com/profile.php?id=738842372871955&ref=ts&fref=ts"><img height="44px" src="img/logo-facebook.png"></a></div></li>
       </ul>
-  <div id="facebook"><a href="https://www.facebook.com/profile.php?id=738842372871955&ref=ts&fref=ts"><img src="img/logo-facebook.png"></a></DIV>
    </div>
   
  </div>
@@ -168,6 +168,56 @@ if ($pocet>0) {
 </div>
 <?php 
 }
+
+
+function ZobrazSoubory($spojeni,$idmenu) {
+$sql="SELECT * FROM soubory_menu where id_content_Menu=$idmenu  order by poradi";
+$res = PrSql($spojeni,$sql);
+$pocet = mysqli_num_rows($res);
+$poradi=0;
+if ($pocet>0) {
+?>
+<hr>
+<h2>Soubory ke stažení :</h2>
+<ul class="soubory">
+<?
+ while ($zaznam = mysqli_fetch_array($res))
+ {
+ ?>  
+  <li><div style='vertical-align:middle;'><a href="<?echo $zaznam["cesta"]?>"><?echo $zaznam["nazev"]?></a></div></li>
+ <?
+ }
+?>
+</ul>
+<?
+}
+}
+function ZobrazTextContentMenu($spojeni) {
+$id=$_GET["id"];
+$sql="SELECT * from content_menu where id_content_menu=$id";
+$res = PrSql($spojeni,$sql);
+$pocet = mysqli_num_rows($res);
+if ($pocet>0) {
+  $zaznam = mysqli_fetch_array($res);
+  $text=$zaznam["text"];
+}
+
+?>
+<div id="strobsah">
+  <div class="strana no-prvnistrana">
+    <div id="obsahhl">  
+  <?php  
+  echo $text; 
+  ZobrazSoubory($spojeni,$id);
+  
+  ?>  
+  </div>
+</div>
+</div>
+<?php 
+}
+
+
 
 function ZobrazKone($spojeni) {
 $id=$_GET["id"];
