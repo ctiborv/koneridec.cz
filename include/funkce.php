@@ -177,7 +177,7 @@ $pocet = mysqli_num_rows($res);
 $poradi=0;
 if ($pocet>0) {
 ?>
-<hr>
+
 <h2>Soubory ke stažení :</h2>
 <ul class="soubory">
 <?
@@ -189,6 +189,7 @@ if ($pocet>0) {
  }
 ?>
 </ul>
+<hr>
 <?
 }
 }
@@ -207,8 +208,9 @@ if ($pocet>0) {
   <div class="strana no-prvnistrana">
     <div id="obsahhl">  
   <?php  
-  echo $text; 
   ZobrazSoubory($spojeni,$id);
+  echo $text; 
+
   
   ?>  
   </div>

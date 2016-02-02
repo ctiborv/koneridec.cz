@@ -230,7 +230,7 @@ $cmd=$_GET["cmd"];
 <div id="strdole">
   <div class="strana">
   
-  <div class="footpage"><p><strong>&nbsp;(c)Rekreační stáje Řídeč - www.koneridec.cz 2015&nbsp;-&nbsp;výlety na koních,&nbsp;+420 604 307 804<span style="float:right"> Vyrobil:  Ctibor Venus - <a href="http://www.ctiborvenus.eu">www.ctiborvenus.eu</a></strong></span></p></div>
+  <div class="footpage"><p><strong>&nbsp;(c)Rekreační stáje Řídeč - www.koneridec.cz &nbsp;-&nbsp;výlety na koních,&nbsp;+420 604 307 804<span style="float:right"> Vyrobil:  Ctibor Venus - <a href="http://www.ctiborvenus.eu">www.ctiborvenus.eu</a></strong></span></p></div>
 </div>
 </div>
  
