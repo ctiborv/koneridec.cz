@@ -48,7 +48,7 @@ function ZobrazMenu($spojeni) {
 
 <div id="vrch"> 
 <div id="pole">
-   <div id="logo"><a href="http://www.koneridec.cz/"><img height="100" src="img/logo.png" title="Vyjíždky na koních Koně řídeč "  alt="Vyjíždky na koních Koně Řídeč"/></a></div>
+   <a href="http://www.koneridec.cz/"><img height="100" src="img/logo.png" title="Vyjíždky na koních Koně řídeč "  alt="Vyjíždky na koních Koně Řídeč"/></a>
     <div id="menu">
        <ul id="nav">
 <?php 
@@ -141,7 +141,7 @@ function ZobrazMenu($spojeni) {
       <li><div id="facebook"><a href="https://www.facebook.com/profile.php?id=738842372871955&ref=ts&fref=ts"><img height="44px" src="img/logo-facebook.png"></a></div></li>
       </ul>
    </div>
-  
+  <div style="clear:both"></div>
  </div>
 
 </div>
