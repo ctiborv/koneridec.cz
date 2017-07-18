@@ -1,8 +1,8 @@
 .pagination {position:absolute;color gray; font-size:20px;width:150px;bottom:8px;z-index:1111111111;right:0px}
 .pagination  li { display: inline ;margin:0px 1px 0px 0;background-color:#333;padding:3px;text-decoration:none;  filter:alpha(opacity=75); /* IE */
-    -moz-opacity:0.75; /* Mozilla */
-    opacity: 0.75; /* CSS3 */
-    color: gray;}
+    -moz-opacity:0.75 !important; /* Mozilla */
+    opacity: 0.75 !important; /* CSS3 */
+    color: gray !important;}
 .pagination a  { text-decoration:none; color: gray;}
  
 .slider-wrapper {
@@ -64,7 +64,7 @@
 	left:0px;
   display: block;
   top: 0px;
-	height:278px;
+	height:428px;
 	width:148px;
 	z-index:999;
 	border-radius: 10px;
@@ -87,11 +87,13 @@
 }
 .next { 
 	background:url(../img/control-buttons.png) -33px 0 no-repeat; 
-	right:437px;
+    right: 30px;
+    top: 45%;
 }
 .prev {
 	background:url(../img/control-buttons.png) 0 0 no-repeat; 
-	right:470px;
+    left: 210px;
+    top: 45%;
 }
 
 .next:hover {background-position: -33px -34px;}

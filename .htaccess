@@ -35,15 +35,6 @@ RewriteRule ^uvod.html index.php?cmd=zobrazContent&id=1
 RewriteRule ^tabory.html index.php?cmd=zobrazContent&id=2
 RewriteRule ^ubytovani.html index.php?cmd=zobrazContent&id=3
 RewriteRule ^nase-kone.html index.php?cmd=zobrazKone&id=-1
-RewriteRule ^kone-ridec-jolanka.html index.php?cmd=zobrazKone&id=1
-RewriteRule ^kone-ridec-mek.html index.php?cmd=zobrazKone&id=2
-RewriteRule ^kone-ridec-monty.html index.php?cmd=zobrazKone&id=3
-RewriteRule ^kone-ridec-nigela.html index.php?cmd=zobrazKone&id=4
-RewriteRule ^kone-ridec-orfik.html index.php?cmd=zobrazKone&id=5
-RewriteRule ^kone-ridec-ory.html index.php?cmd=zobrazKone&id=6
-RewriteRule ^kone-ridec-sona.html index.php?cmd=zobrazKone&id=7
-RewriteRule ^kone-ridec-leonka.html index.php?cmd=zobrazKone&id=8
-RewriteRule ^kone-ridec-bony.html index.php?cmd=zobrazKone&id=9
 RewriteRule ^co-nabizime.html index.php?cmd=zobrazContent&id=5
 RewriteRule ^novinky.html index.php?cmd=zobrazContent&id=6
 RewriteRule ^galerie.html index.php?cmd=zobrazGalerie

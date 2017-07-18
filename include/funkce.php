@@ -48,7 +48,7 @@ function ZobrazMenu($spojeni) {
 
 <div id="vrch"> 
 <div id="pole">
-   <a href="http://www.koneridec.cz/"><img height="100" src="img/logo.png" title="Vyjíždky na koních Koně řídeč "  alt="Vyjíždky na koních Koně Řídeč"/></a>
+   <a href="http://www.koneridec.cz/"><img style="vertical-align:top" height="100" src="img/logo.png" title="Vyjíždky na koních Koně řídeč "  alt="Vyjíždky na koních Koně Řídeč"/></a>
     <div id="menu">
        <ul id="nav">
 <?php 
@@ -64,23 +64,19 @@ function ZobrazMenu($spojeni) {
   $typ=$zaznam["typ"];
   $input = friendly_url($nazev);
   $class="";  
-  if ($i==1) {
-  $class="class=\"first\"";
-  }
-  if ($i==$pocet) {
-  $class="class=\"noborder\"";
-  }
-  
+  if ($i==1) $class="class=\"first\"";
+  if ($i==$pocet) $class="class=\"noborder\"";
+  if ($input!='uvod') {
   ?>
         <li><a href="<?php echo $input?>.html"  <?php  echo $class?>><?php  echo $nazev ?></a>
   <?php 
-/*  if ($typ=="T") {$rr=$rr."RewriteRule ^$input.html index.php?cmd=zobrazContent&id=$id\n";}
-  if ($typ=="K") {$rr=$rr."RewriteRule ^$input.html index.php?cmd=zobrazKone&id=-1\n";}
-  if ($typ=="G") {$rr=$rr."RewriteRule ^$input.html index.php?cmd=zobrazGalerii\n";}
-  if ($typ=="U") {$rr=$rr."RewriteRule ^$input.html index.php\n";}
-  if ($typ=="G") {$rr=$rr."RewriteRule ^$input.html index.php?cmd=zobrazGalerii\n";}
-  if ($typ=="V") {$rr=$rr."RewriteRule ^$input.html index.php?cmd=zobrazVzkazy\n";}
-*/  
+  }
+  else {
+  ?>
+        <li><a href="/"  <?php  echo $class?>><?php  echo $nazev ?></a>
+  <?php 
+  }
+
   if ($typ=="K") {
     $sqlk="SELECT * from konemenu order by poradi";
     $resk = PrSql($spojeni,$sqlk);
@@ -91,21 +87,18 @@ function ZobrazMenu($spojeni) {
       $id=$zaznamk["id"];
       $nazevk=$zaznamk["nazev"];
       $input = friendly_url($nazevk);
-      if ($j==1) {
-      $class="class=\"top\"";
-    }
-    if ($j==$pocetk) {
+      if ($j==1) $class="class=\"top\"";
+      if ($j==$pocetk) {
     $class="class=\"bottom\"";  
     }   
     ?>
-          <li><a href="kone-ridec-<?php echo $input?>.html" <?php  echo $class?>><?php  echo $nazevk ?></a></li>
+          <li><a href="nase-kone.html#<?php echo $input?>" <?php  echo $class?>><?php  echo $nazevk ?></a></li>
     <?php 
-    $rr=$rr."RewriteRule ^kone-ridec-$input.html index.php?cmd=zobrazKone&id=$id\n";
     $j=$j+1;
     }
     echo "</ul>";
   }
-  if ($typ=="M") {
+  elseif ($typ=="M") {
     $sqlk="SELECT * from content_menu where id_hlavni_menu=".$zaznam["id"]." order by poradi";
     $resk = PrSql($spojeni,$sqlk);
     $pocetk = mysqli_num_rows($resk);
@@ -178,8 +171,8 @@ $poradi=0;
 if ($pocet>0) {
 ?>
 
-<h2>Soubory ke stažení :</h2>
-<ul class="soubory">
+<h3>Soubory ke stažení :</h3>
+<ul class="souborya">
 <?
  while ($zaznam = mysqli_fetch_array($res))
  {
@@ -205,14 +198,15 @@ if ($pocet>0) {
 
 ?>
 <div id="strobsah">
-  <div class="strana no-prvnistrana">
-    <div id="obsahhl">  
-  <?php  
-  ZobrazSoubory($spojeni,$id);
-  echo $text; 
-
-  
-  ?>  
+  <div class="strana no-prvnistrana container">
+    <div class="row">
+      <div class="col-md-8">
+        <?=$text?>
+      </div>  
+      <div class="col-md-4">
+        <?=ZobrazSoubory($spojeni,$id);?>
+      </div>
+    
   </div>
 </div>
 </div>
@@ -222,6 +216,10 @@ if ($pocet>0) {
 
 
 function ZobrazKone($spojeni) {
+?>
+<div id="strobsah">
+  <div class="strana no-prvnistrana">
+  <?
 $id=$_GET["id"];
 if ($id==-1) {$sql="SELECT * from konemenu order by poradi";}
 else {$sql="SELECT * from konemenu where id=$id";}
@@ -233,17 +231,71 @@ while ($zaznam = mysqli_fetch_array($res))
   $text=$zaznam["text"];
 
 ?>
-<div id="strobsah">
-  <div class="strana no-prvnistrana">
-    <div id="obsahhl">  
-  <?php  echo $text; ?>  
+    <div id="<?= friendly_url($zaznam["nazev"]) ?>">  
+<h2 class="text-center"><?=$zaznam['nazev']?></h2>
+<hr class="style-two" />
+<br />
+<div class="row">
+  <div class="col-md-4">
+      <?php  echo $text; ?>  
+    </div>
+  <div class="col-md-8">
+    <?php
+    $id_kone=$zaznam['id'];
+    $sql="SELECT * from kone_obrazky where id_kone=$id_kone ORDER BY poradi";
+    $r = PrSql($spojeni,$sql);
+    $pocet = mysqli_num_rows($r);
+    if ($pocet>0) {
+    ?>    
+    <div id="carousel<?= friendly_url($zaznam["nazev"])?>" class="carousel slide">
+    
+         <ol class="carousel-indicators">
+              <?php
+              $active="active";
+              $i=0;
+              while ($z = mysqli_fetch_array($r)) {?>
+              <li data-target="#carousel<?= friendly_url($zaznam["nazev"])?>" data-slide-to="<?=$i?>" class="<?=$active?>"></li>
+              <?php $active="";$i++;} ?>
+          </ol>
+    
+    <div class="carousel-inner" role="listbox">
+    <?php
+    $r = PrSql($spojeni,$sql);
+    $active="active";
+    while ($z = mysqli_fetch_array($r)) {
+      
+      ?>
+            <div class="item <?=$active?> img-responsive">
+            <img style="margin: 0 auto;" src="<?='galerie/obrazky/thumbs/thumb_l_'.$z['obrazek']?>" alt="<?=$zaznam['nazev']?>">
+            </div>
+            <?
+            $active="";
+            }
+    ?>
+    <a class="left carousel-control" href="#carousel<?= friendly_url($zaznam["nazev"]) ?>" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel<?= friendly_url($zaznam["nazev"]) ?>" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  </div>
+  <?php } ?>  
   </div>
 </div>
-</div>
-<?php 
+<br/>
+<hr />
+<br/>
 
+<?php
 }
 }
+?>
+</div>
+</div>
+<?php
 }
 
 function ZobrazKontakt($spojeni) {
@@ -291,53 +343,30 @@ function ZobrazVzkazy() {
 
 
 function ZobrazUvod($spojeni) {
+$sql="SELECT * from slider ORDER BY poradi";
+$res = PrSql($spojeni,$sql);
+$pocet = mysqli_num_rows($res);
+if ($pocet>0) {
 ?>
-
 
 <div class="slider-wrapper">
    <div id="slides">  
-     <div class="slides_container">
+     <div class="slides_container jCarouselLite">
+          <?php
+            while ($zaznam = mysqli_fetch_array($res)) {
+            ?>                                      
         <div class="slide">
 									<div class="caption">
-			                            <div class="slider-inner">Objevte spoustu krásných míst z koňského sedla. Kolem Řídeče jsou hluboké lesy i divoké louky s krásnými výhledy na Hanou.</div>
+			                            <div class="slider-inner"><?=$zaznam['popis']?></div>
 	                </div>
-          <a rel=""  href="img/projizkda1.jpg" >       	<img  src="img/projizkda1.jpg" alt="" /> </a>
+          <a rel=""  href="/galerie/obrazky/thumbs/thumb_l_<?=$zaznam['obrazek']?>" >       	<img  src="/galerie/obrazky/thumbs/thumb_l_<?=$zaznam['obrazek']?>" alt="" /> </a>
         </div>
-	     <div class="slide">
-									<div class="caption">
-                           <div class="slider-inner">K dispozici je 9 koní ( Monty, Mc Scream, Nigela, Ory, Orphan, Soňa, Jolanka, Leona , Bony)</div>
-                       </div>
-	          <a id="example1" rel=""  href="img/2.jpg" >    	<img src="img/2.jpg" alt="" />  </a>
-       </div>
-	     <div class="slide">
-									<div class="caption">
-                           <div class="slider-inner">Vybavení stáje je nadstandartní jak pro koně, tak pro klienty ( šatny, WC, klubovna ). </div>
-                       </div>
-	          <a id="example1" rel=""  href="img/3.jpg" >    	<img src="img/3.jpg" alt="" />  </a>
-       </div>
-	     <div class="slide">
-									<div class="caption">
-                           <div class="slider-inner">VYJÍŽĎKY DO OKOLÍ PRO DĚTI - vyjížďky do přírody, koně vedeni vodičem, vhodné pro školy, školky, pracovní kolektivy, rodiny apod.</div>
-                       </div>
-	          <a id="example1" rel=""  href="img/3-dite.jpg" >    	<img src="img/3-dite.jpg" alt="" />  </a>
-       </div>
-	     <div class="slide">
-									<div class="caption">
-                           <div class="slider-inner">V KOŇSKÉM SEDLE - jezdecký výcvik po skupinkách pod vedením odborných cvičitelů o jarních, letních a zimních prázdninách, celodenní péče o koně, 6 nocí na pokojích v budově, strava 5x denně</div>
-                       </div>
-	          <a id="example1" rel=""  href="img/4-vyuka.jpg" >    	<img src="img/vyukam.jpg" alt="" />  </a>
-       </div>
-	     <div class="slide">
-									<div class="caption">
-                         <div class="slider-inner">Vyjížďka do přírody na saních(v zimě) nebo v kočáře taženém dvěma chladnokrevnými koňmi. </div>
-                  </div>
-          <a rel=""  href="img/vyjizdka-kocar.jpg" >       	<img  src="img/vyjizdka-kocar.jpg" alt="" /> </a>
-      </div>
+        <?php } ?>
 
 	  </div>
           </div>
  </div>
-
+<?php } ?>
 <div id="web-newbox">
 <div class="strana">
   

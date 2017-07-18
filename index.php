@@ -18,15 +18,14 @@ $GLOBALS["spojeni"]=$glspojeni;
 
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Podkova">
 <link rel="stylesheet" href="css/menu.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="css/index.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="css/slider.css" type="text/css" media="screen, projection">
-<link href="css/css_004.css" rel="stylesheet" type="text/css">
-<link href="css/css.css" rel="stylesheet" type="text/css">
-<link href="css/css_002.css" rel="stylesheet" type="text/css">
-<link href="css/css_003.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="css/jquery.htm" type="text/css" media="screen">	
 <link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" media="screen" />
-<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+
+<!--<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>-->
+<script type="text/javascript" src="js/jquery-1.11.2.min.js "></script>
+<script type="text/javascript" src="js/bootstrap.min.js "></script>
      
 <script type="text/javascript" src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 <script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.js"></script>
@@ -34,17 +33,9 @@ $GLOBALS["spojeni"]=$glspojeni;
 <script type="text/javascript" src="js/superfish.js"></script>    
 <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>      
 <script type="text/javascript" src="js/jquery.ui.totop.js"></script>       
-<script src="js/code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-
-
-     
+                                                                           
 <script type="text/javascript" src="js/slides.min.jquery.js"></script>     
-<script type="text/javascript" src="js/FF-cash.js"></script>       
 <script type="text/javascript" src="js/script.js"></script>     
-<script type="text/javascript" src="js/script2.js"></script> <!-- menu pro kartu menu  -->
-<script type="text/javascript" src="js/script3.js"></script> <!-- menu pro kartu menu  -->
-
-
 
 <script type="text/javascript" src="js/jquery.hoverIntent.js"></script> 	
 <script type="text/javascript" src="js/jcarousellite_1.0.1.js"></script>     
@@ -130,7 +121,7 @@ $GLOBALS["spojeni"]=$glspojeni;
 				'transitionIn'		: 'none',
 				'transitionOut'		: 'none'
 			});
-		});
+		});        
 	</script>
   
 <script type="text/javascript">
@@ -199,7 +190,8 @@ $cmd=$_GET["cmd"];
     break;
     case "zobrazContentMenu":
        zobrazTextContentMenu($spojeni);
-    break;    case "zobrazKone":
+    break;    
+    case "zobrazKone":
        zobrazKone($spojeni);
     break;
     case "zobrazKontakt":

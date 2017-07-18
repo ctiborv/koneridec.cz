@@ -9,7 +9,7 @@ define('Y_DUM_NAHLED', '117');
 define('X_PUDORYS_NAHLED', '474');   // RIGHT - Works OUTSIDE of a class definition.
 define('Y_PUDORYS_NAHLED', '380');
 define('X_PUDORYS_VELKE', '1200');   // RIGHT - Works OUTSIDE of a class definition.
-define('CESTA_OBRAZKY', 'images/domy/');   // RIGHT - Works OUTSIDE of a class definition.
+define('CESTA_OBRAZKY', 'galerie/obrazky/');   // RIGHT - Works OUTSIDE of a class definition.
 define('CESTA_SOUBORY', 'files/');   // RIGHT - Works OUTSIDE of a class definition.
 
 
@@ -119,12 +119,27 @@ $cmd=$_GET["cmd"];
     case "prKoneMenu":
       prKoneMenu($spojeni);
       break;
+    case "prSliderMenu":
+      prSliderMenu($spojeni);
+      break;
+      
     case "editKoneData":
       editKoneData($spojeni);
       break;
+    case "editSliderData":
+      editSliderData($spojeni);
+      break;
+      
     case "zobrazKoneMenu":
       zobrazKoneMenu($spojeni);
     break;
+    case "zobrazSliderMenu":
+      zobrazSliderMenu($spojeni);
+    break;    
+    case "obrazek_kone":
+      nahrajKoneObrazky($spojeni);
+    break;
+    
     case "zobrazhlavni_Menu":
     zobrazHlavni_Menu($spojeni);
     break;

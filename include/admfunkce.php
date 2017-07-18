@@ -1,6 +1,5 @@
 <?php
 
-
   include('class.upload.php');
 
   function friendly_url($nadpis) {
@@ -23,6 +22,7 @@ ZobrazUvod($spojeni,0,0);
   <ul>
     <li><a href="?cmd=zobrazhlavni_Menu">Editace hlavního menu</a></li>
     <li><a href="?cmd=zobrazKoneMenu">Editace koní</a></li>
+    <li><a href="?cmd=zobrazSliderMenu">Editace slideru - úvodní animace</a></li>
     <li><a href="gbook/admin.php">Editace vzkazů</a></li>
 </ul>
   
@@ -374,7 +374,7 @@ switch ($cast) {
            - > <?php  echo $nazevhlMenu ?>  </a>
       <?php 
   }
-  
+
   
   ?>
    </div><div class="zpet"><?php echo $zpet?>ZPĚT</A></div><br> 
@@ -415,6 +415,25 @@ switch ($cast) {
    </div><div class="zpet"><?php echo $zpet?>ZPĚT</A></div><br> 
   <?php 
   break;
+  case "3":
+    $zpet= "<a href=\"admin.php\">";
+  ?>
+            <div><h2><a href="admin.php">Administrace</a> -> <a href="admin.php?cmd=zobrazSliderMenu">Slider menu</a> 
+  <?php 
+
+    if ($uroven>=1) {
+        $idhm=$_GET["idm"];
+        $zpet= "<a href=\"?cmd=zobrazKoneMenu\">";
+        $sql="SELECT * FROM slider where id=$idhm";
+        $res = PrSql($spojeni,$sql);
+        $zaznam = mysqli_fetch_array($res);
+        $nazevhlMenu=$zaznam["nazev"];
+         ?>      
+           - > <?php  echo $nazevhlMenu ?>  </a>
+      <?php 
+  }
+  break;
+    
  }
   
 }
@@ -524,6 +543,59 @@ function UlozObrazek($cesta,$nazev,$typmenu)
 
 
 
+function prSliderMenu($spojeni)
+
+{
+  $idhmenu=$_SESSION["idhmenu"];
+  $nahoru=$_POST["nahoru_x"];
+  $dolu =$_POST["dolu_x"];
+  $prejmenovat =$_POST["prejmenovat_x"];
+  $novy=$_POST["novy_x"];
+  $smazat = $_POST["smazat_x"]; 
+  $id=$_POST["idmenu"];
+  $novynazev=$_POST["nazev".$id];
+  if ($novy) {
+  $nazevn=$_POST["nazevn"];
+  $poradi=$_POST["poradi"];   
+  $sql = "INSERT INTO slider (nazev,poradi) VALUES ('$nazevn',$poradi)";
+  $res = PrSql($spojeni,$sql);
+  }
+  
+  if ($prejmenovat) {   
+  $sql = "UPDATE slider SET nazev='$novynazev' where id=$id";
+  $res = PrSql($spojeni,$sql);
+  }
+  if ($smazat) {
+  $sql = "DELETE from slider where id=$id";
+  $res = PrSql($spojeni,$sql);
+  } 
+  
+  if ($nahoru || $dolu) {
+    $poradi=$_POST["poradi"];
+    if ($nahoru) {
+    $sql = "SELECT * from slider where poradi<$poradi order by poradi DESC LIMIT 1";
+    }
+    else {
+    $sql = "SELECT * from slider where poradi>$poradi order by poradi ASC LIMIT 1";
+    }    
+    $res = PrSQL($spojeni,$sql);
+    $pocet = mysqli_num_rows($res);
+    if ($pocet > 0) {
+      $zaznam = mysqli_fetch_array($res);
+      $idvrchni = $zaznam["id"];
+      $porvrchni = $zaznam["poradi"];
+      $sql = "UPDATE slider SET poradi='$porvrchni' where id=$id";
+      $res = PrSql($spojeni,$sql);
+      $sql = "UPDATE slider SET poradi='$poradi' where id=$idvrchni";
+      $res = PrSql($spojeni,$sql);
+    }
+  }
+
+  
+  zobrazSliderMenu($spojeni);
+  
+  
+}
 
 function prKoneMenu($spojeni)
 
@@ -644,6 +716,135 @@ function zobrazKoneMenu($spojeni)
 
 }
 
+function zobrazSliderMenu($spojeni)
+        {  
+                    ZobrazUvod($spojeni,0,3);
+          $sql="SELECT * FROM slider  order by poradi";
+          $res = PrSql($spojeni,$sql);
+          $pocet = mysqli_num_rows($res);
+          ?>
+            <table border="1" width="500">
+            <tr>
+              <th>Název</th>
+              <th width="50">Upravit/<br>nový</th>
+              <th>Pořadí</th>
+              <th>Smazat</th>
+              <th>Přidat údaje</th>
+            </tr>
+          <script language="JavaScript">
+            function KontrolaNazvu(id)
+                    {
+                      var nazevform = "konemenu" + id;
+                      var nazevpole = "nazev" + id;
+                      var text_jmena = document.forms[nazevform][nazevpole].value;
+                      var je_ok = text_jmena != "";
+                      if (je_ok == false) alert('Nebyl zadán název menu!');
+                      return je_ok; }         
+           </script> 
+          <?php  
+          if ($pocet>0) {
+          $i=0;
+          while ($zaznam = mysqli_fetch_array($res))
+           {
+           $poradi=$zaznam["poradi"];
+            ?>
+            <tr>
+      	    <form name="konemenu<?php echo $zaznam["id"]?>" ENCTYPE="multipart/form-data"  method="post" action="?cmd=prSliderMenu" onsubmit="return KontrolaNazvu(<?php echo $zaznam["id"]?>);">
+            <td><input id="idnaz<?php  echo $zaznam["id"]?>" type="text" value="<?php echo $zaznam["nazev"];?>" name="nazev<?php  echo $zaznam["id"]?>"><input name="idmenu" type="hidden" value="<?php echo $zaznam["id"]?>"></td>
+            <td><input name="prejmenovat" type ="image" src="img/b_edit.png" value="1" ></td>
+            <td><input type="hidden" name="poradi" value="<?php echo $zaznam["poradi"]?>">
+            <?php  if ($i>0) {?><input name="nahoru" type ="image" src="img/j_arrow_up.png" value="1"><br><?php }
+            if ($i<($pocet-1)) {?><input name="dolu" type ="image" src="img/j_arrow_down.png" value="1"><?php }?>
+            </td>
+            <td><input name="smazat" type ="image" src="img/b_drop.png" value="1" onclick="return confirm('Budou tím smazány i veškeré data s touto položkou související, opravdu smazat tuto položku?')"></td>
+            <td><a href="?cmd=editSliderData&idm=<?php echo $zaznam["id"]?>">Editace slideru</a></td>            
+            </form>
+            </tr>
+            
+            <?php 
+            $i=$i+1;
+          }           	
+        } // END function ZobrazPrilohy
+
+        ?>
+         <tr>
+      	    <form name="konemenun" ENCTYPE="multipart/form-data"  method="post" action="?cmd=prSliderMenu" onsubmit="return KontrolaNazvu('n');">
+            <td><input type="text" value="" name="nazevn" value=""><input name="poradi" type="hidden" value="<?php echo ($poradi+1)?>"></td>
+            <td><input name="novy" type ="image" src="img/icon-16-new.png" value="1"></td>
+            </form>
+        </tr>      
+        </table>  
+        
+                 
+        <?php 
+
+}
+
+
+function nahrajKoneObrazky($spojeni)
+{
+    $nahoru=$_POST["nahoru_x"];
+  $dolu =$_POST["dolu_x"];
+  $prejmenovat =$_POST["prejmenovat_x"];
+  $novy=$_POST["novy_x"];
+  $smazat = $_POST["smazat_x"]; 
+  $id_kone=$_GET['idm'];
+  if (isset($_POST['Nahratnovy'])) {
+  
+      	$uploaded= $_FILES['userfile']['name'];
+        $poradi = (int)$_POST['poradinove'];
+      	foreach ($uploaded as $key => $value){				
+            $fname	=	$value;
+            $fext =      explode(".",$value);
+            $fext		=  end($fext );		
+            $ftype	=	$_FILES['userfile']['type'][$key];
+            $ftmp	=	$_FILES['userfile']['tmp_name'][$key];
+            $fsize	=	$_FILES['userfile']['size'][$key];					
+            $ferror=	$_FILES['userfile']['error'][$key];     
+            $nazev_obr =  friendly_url(basename($fname)); 
+            $res = perform_upload($nazev_obr, $fext, $ftmp, $fsize, $ftype,$ferror,1500,1500,1);
+            $sql = "INSERT INTO kone_obrazky 
+            SET poradi=$poradi,
+            obrazek='$res',
+            id_kone=$id_kone";
+            $res = PrSql($spojeni,$sql);
+            $poradi++;
+    }
+  }
+  $id=(int)$_POST['id_obrazek'];
+ if ($nahoru || $dolu) {
+    $poradi=$_POST["poradi"];
+    if ($nahoru) {
+    $sql = "SELECT * from kone_obrazky where poradi<$poradi order by poradi DESC LIMIT 1";
+    }
+    else {
+    $sql = "SELECT * from kone_obrazky where poradi>$poradi order by poradi ASC LIMIT 1";
+    }    
+    $res = PrSQL($spojeni,$sql);
+    $pocet = mysqli_num_rows($res);
+    if ($pocet > 0) {
+      $zaznam = mysqli_fetch_array($res);
+      $idvrchni = $zaznam["id_obrazek"];
+      $porvrchni = $zaznam["poradi"];
+      $sql = "UPDATE kone_obrazky SET poradi='$porvrchni' where id_obrazek=$id";
+      $res = PrSql($spojeni,$sql);
+      $sql = "UPDATE kone_obrazky SET poradi='$poradi' where id_obrazek=$idvrchni";
+      $res = PrSql($spojeni,$sql);
+    }
+  }
+    
+  if ($smazat) {
+  echo "SMAZANO";
+  $sql = "DELETE from kone_obrazky where id_obrazek=$id";
+  $res = PrSql($spojeni,$sql);
+  } 
+  
+  
+  editKoneData($spojeni);
+  
+}
+
+
 function editKoneData($spojeni)
 {      
            
@@ -657,11 +858,50 @@ function editKoneData($spojeni)
           $text=$zaznam["text"];
           $butt="Uložit";
           ?>
-          <form name="dataMenuT" ENCTYPE="multipart/form-data"  method="post" action="?cmd=editKoneData">
                 <table>
+                <?
+          $sql="SELECT * FROM kone_obrazky where id_kone=$idmenu order by poradi";
+          $res = PrSql($spojeni,$sql);
+          $pocet = mysqli_num_rows($res);
+          if ($pocet>0) {
+          ?>
+          <tr><td colspan="3">Nahrané obrázky</td></tr><tr>
+          <?
+           $i=0;
+           $j=1;
+           while ($zaznam = mysqli_fetch_array($res))
+           {
+             ?>
+	          <form name="dataMenu" ENCTYPE="multipart/form-data"  method="post" action="?cmd=obrazek_kone&idm=<?=$idmenu?>">
+             <td>
+             <img width="100" src="<?= CESTA_OBRAZKY."thumbs/thumb_m_".$zaznam["obrazek"]?>" alt="nahled"/><br>
+              <? if ($i>0) {?><input name="nahoru" type ="image" src="img/j_arrow_left.png" value="1"><?}
+              if ($i<($pocet-1)) {?><input name="dolu" type ="image" src="img/j_arrow_right.png" value="1"><?}?>
+              <input name="smazat" type ="image" src="img/b_drop.png" onclick="return confirm('Opravdu smazat?')" value="1"><input name="poradi" type="hidden" value="<?echo $zaznam["poradi"]?>"><input name="id_obrazek" type="hidden" value="<?echo $zaznam["id_obrazek"]?>">
+              <input name="typm" type="hidden" value="<?echo $typ?>"></td>
+              </form>
+              <?
+              $poradi=$zaznam["poradi"];
+              $i=$i+1;
+              $j=$j+1;
+              if ($j>6) {echo "</tr><tr>";$j=1;}
+            }
+            
+          ?></tr>
+          </table>
+          <table>
+          <?}?>
+          <form name="dataMenuN" ENCTYPE="multipart/form-data"  method="post" action="?cmd=obrazek_kone&idm=<?=$idmenu?>">
+          <tr>
+          <td colspan="3">Přidat obrázky: <input type="file" name="userfile[]" value="" multiple><input name="poradinove" type="hidden" value="<?echo ($poradi+1)?>">
+          <input type="submit" name="Nahratnovy" value="Nahrát obrázky">
+          </td>
+          </tr>
+          </form>            
+          <form name="dataMenuT" ENCTYPE="multipart/form-data"  method="post" action="?cmd=editKoneData">
                 <td><textarea id="e1m1" name="text"><?php echo $text ?></textarea></td>
                 <tr>
-                  <td align="center"><input type="submit" name="<?php echo $butt?>" value="Uložit text"><input name="iddata" type="hidden" value="<?php echo $zaznam["id"]?>"></td>
+                  <td align="center"><input type="submit" name="<?php echo $butt?>" value="Uložit text"><input name="iddata" type="hidden" value="<?=$idmenu?>"></td>
                 </tr>
                 </tr>
                 </table>
@@ -674,6 +914,72 @@ function editKoneData($spojeni)
           $sql = "UPDATE konemenu SET text='$text' where id=$idm";
           $res = PrSql($spojeni,$sql);
           zobrazKoneMenu($spojeni);
+          
+          }
+          
+}           	
+
+
+
+
+
+function editSliderData($spojeni)
+{      
+           
+          $idmenu=$_GET["idm"];
+          if ($idmenu) {
+            ZobrazUvod($spojeni,1,3);
+          $sql="SELECT * from slider where id=$idmenu";
+          $res = PrSql($spojeni,$sql);
+          $pocet = mysqli_num_rows($res);
+          $zaznam = mysqli_fetch_array($res);
+          $text=$zaznam["popis"];
+          $butt="Uložit";
+          ?>
+          <form name="dataMenuT" ENCTYPE="multipart/form-data"  method="post" action="?cmd=editSliderData">
+            <table>
+              
+              <tr>
+                <td>
+                              <?if ($zaznam['obrazek']) {?>
+              
+                <img width="100" src="/galerie/obrazky/<?=$zaznam['obrazek']?>">
+              <?php } ?>
+
+               <input type="file" name="userfile" value="">
+              </tr>
+              <tr>  
+                
+                <td><div style="font-size:16px">TEXT:</div><textarea id="" cols="80" rows="5" name="text"><?php echo $text ?></textarea></td>
+              </tr>  
+              <tr>
+                  <td align="center"><input type="submit" name="<?php echo $butt?>" value="Uložit slider"><input name="iddata" type="hidden" value="<?=$idmenu?>"></td>
+                </tr>
+              </tr>
+            </table>
+          </form>
+          <?php 
+            }
+          else {
+          if (($_FILES['userfile']['name'])) {
+            $input = $_FILES['userfile'];
+            $fname	=	$_FILES['userfile']['name'];
+            $fext =  explode(".",$fname);
+            $fext		=  end($fext);	
+            $ftype	=	$_FILES['userfile']['type'];
+            $ftmp	=	$_FILES['userfile']['tmp_name'];
+            $fsize	=	$_FILES['userfile']['size'];					
+            $ferror=	$_FILES['userfile']['error'];
+            $nazev_obr =  friendly_url(basename($fname)); 
+            $image=perform_upload($nazev_obr, $fext, $ftmp, $fsize, $ftype,$ferror,760,428,1);
+            $sqlimage=", obrazek='$image'";
+          }
+          else $sqlimage="";
+          $text=$_POST["text"];
+          $idm=$_POST["iddata"];
+          $sql = "UPDATE slider SET popis='$text' $sqlimage where id=$idm";
+          $res = PrSql($spojeni,$sql);
+          zobrazSliderMenu($spojeni);
           
           }
           
@@ -793,7 +1099,127 @@ function zobrazHlavni_Menu($spojeni)
 
 
 
+    function resizePhoto($cesta,$nazev,$width,$height,$aspectratio,$quality,$typ)  {
+    
+       /*
+       $vstup //cesta k původnímu obrázku
+       $vystup //cesta ke zmenšenému obrázku
+       $width //šířka zmenšeného obrázku
+       $height //délka zmenšeného obrázku
+       $aspectratio //zachovávat poměr stran (0/1)
+       $quality //komprese (100 - nejlepsi) - doporucuji 75
+        */
+    
+      $vstup = $cesta;
+        if(file_exists($vstup)){  //nejprve zjistíme, zda-li byl zadán vstup a existuje
+            $vstup = ImageCreateFromJPEG($vstup);  //načteme si obrázek do proměnné
+        } else {
+            return false;
+        }
+        $vstup_wd = imagesx($vstup); //zjistíme šířku původního obrázku
+        $vstup_ht = imagesy($vstup);  //zjistíme délku původního obrázku
+    
+        if($vstup_wd <= $width && $vstup_ht <= $height) {
+            //pokud je obrázek menší než požadovaná velikost nebudeme počítat nové hodnoty
+            $width = $vstup_wd;
+            $height = $vstup_ht;
+        } else {
+            if($aspectratio) {
+                //pokud je zaplý aspect ratio spočítáme novou velikost v daném poměru
+                $w = round($vstup_wd * $height / $vstup_ht);
+                $h = round($vstup_ht * $width / $vstup_wd);
+                if(($height-$h)<($width-$w)){
+                    $width =& $w;
+                } else {
+                    $height =& $h;
+                }
+            }
+             else { 
+              if( $vstup_wd > $vstup_ht ) {
+                    // For landscape images
+                    $x_offset = ($vstup_wd - $vstup_ht) / 2;
+                    $y_offset = 0;
+                    $square_size = $vstup_wd - ($x_offset * 2);
+                } else {
+                    // For portrait and square images
+                    $x_offset = 0;
+                    $y_offset = ($vstup_ht - $vstup_wd) / 2;
+                    $square_size = $vstup_ht - ($y_offset * 2);
+                }
+              }             
+            
+        }
+        $temp = imageCreateTrueColor($width,$height);
+        //vytvoříme obrázek o rozměrech zmenšeného obrázku
+        if ($aspectratio) imageCopyResampled($temp, $vstup, 0, 0, 0, 0, $width, $height, $vstup_wd, $vstup_ht);
+        else imageCopyResampled(
+            $temp,
+            $vstup,
+                0,
+                0,
+                $x_offset,
+                $y_offset,
+                $width,
+                $height,
+                $square_size,
+                $square_size
+                );
+        
+//        imagecopy(resource dst_im, resource src_im, int dst_x, int dst_y, int src_x, int src_y, int src_w, int src_h) 
+        //obrázky zkopíruje na sebe, takže dojde vlastně ke zmenšení výsledného obrázku
+        $vystup=CESTA_OBRAZKY."/thumbs/thumb_".$typ."_".$nazev;
+        ImageJPEG($temp, $vystup, $quality);
+        //uložíme zmenšený obrázek na výstup
+        imagedestroy($vstup); //uvolnime pamět
+        imagedestroy($temp); //uvolnime pamět
+        return $vystup;
+    }
+
+        function perform_upload($filename, $fextension, $temp_file, $filesize, $filetype,$fileerror,$resize_x,$resize_y,$zachovat_strany){
+
+        $goodSize=($filesize < 9950000);
+
+        $allowedExts= array("jpg", "jpeg", "gif", "png");	
+        $extensionMatch = in_array(strtolower($fextension), $allowedExts);
+        if(!$extensionMatch ) {
+            echo "extension dont match";
+            return 0;
+        }
+        if ($goodSize  && $extensionMatch) {
+            if ($fileerror > 0) {
+                echo "fileerror";
+                return 0;
+            }   
+        else   {
+            $location = CESTA_OBRAZKY;
+            $soubor = $location.$filename.".$fextension";
+            if (file_exists($soubor)) {
+             $filename="1".$filename;
+             $soubor=$location.$filename.".$fextension";;
+            }
+            
+
+            
+            if(!move_uploaded_file($temp_file, $soubor))
+                            echo "failed to move the upload file to $location<br>";
+            else
+                            echo "Stored in: " . $location;
+            if (strtolower($fextension)=='jpg') {
+                $vystup=$filename.".$fextension";
+                resizePhoto($soubor,$filename.".$fextension",$resize_x,$resize_y,$zachovat_strany,'75','l');
+                resizePhoto($soubor,$filename.".$fextension",500,500,0,'75','m');
+                resizePhoto($soubor,$filename.".$fextension",50,50,0,'55','s');
+            }
+            else $vystup = $soubor;
+	}
+    
+        }
+        else {
+            echo "extension error";
+            $vystup=0;
+        }
+        
+        return $vystup;
+        }
 
 
-
-?>
